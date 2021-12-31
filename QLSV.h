@@ -294,3 +294,171 @@ HocVien* inputFromKeyboard(HocVien* dsHV, Class* dsLop)
 	cin >> x->point;
 	return x;
 }
+
+// cau 4
+
+bool checkMaLop(Class* first, string ma)
+{
+	if (first == NULL)
+	{
+
+		return false;
+	}
+
+	Class* p;
+	p = first;
+	while (p != NULL)
+	{
+		if (p->id == ma)
+		{
+			return true;
+		}
+		p = p->link;
+	}
+	return false;
+}
+
+string getmaFromName(Class* first, string name)
+{
+	if (first == NULL)
+	{
+
+		return "";
+	}
+
+	Class* p;
+	p = first;
+	while (p != NULL)
+	{
+		if (p->name == name)
+		{
+			return p->id;
+		}
+		p = p->link;
+	}
+	return "";
+}
+
+bool checkMaHV(HocVien* first, int ma)
+{
+	if (first == NULL)
+	{
+		return false;
+	}
+
+	HocVien* p;
+	p = first;
+	while (p != NULL)
+	{
+		if (p->id == ma)
+		{
+			return true;
+		}
+		p = p->link;
+	}
+	return false;
+}
+
+void outputListHV(HocVien* first) // 
+{
+	if (first == NULL)
+	{
+		cout << "Chua co danh sach!!!" << endl;
+		return;
+	}
+	int i = 1;
+	HocVien* p;
+	p = first;
+	cout << setw(12) << "STT" << setw(20) << "MSSV" << setw(20) << "Ho & ten dem" << setw(10) << "Ten" << setw(20) << "Ngay Sinh" << setw(11) << "Ma Lop" << setw(10) << "Diem" << endl;
+	cout << "----------------------------------------------------------------------------------------------------------" << endl;
+	while (p != NULL)
+	{
+		cout << setw(11) << i++ << "|" << setw(20) << p->id << setw(20) << p->firstName << setw(10) << p->lastName << setw(13) << p->birdDay[0] << "/" << setw(2) << p->birdDay[1] << "/" << setw(4) << p->birdDay[2] << setw(10) << p->idClass << setw(10) << p->point << endl;
+		p = p->link;
+	}
+}
+
+// output theo ma lop
+void outputListHVTheoMaLop(HocVien* first, string malop)
+{
+	if (first == NULL)
+	{
+		cout << "Chua co danh sach!!!" << endl;
+		return;
+	}
+	int i = 1;
+	HocVien* p;
+	p = first;
+	cout << setw(12) << "STT" << setw(20) << "MSSV" << setw(20) << "Ho & ten dem" << setw(10) << "Ten" << setw(20) << "Ngay Sinh" << setw(11) << "Ma Lop" << setw(10) << "Diem" << endl;
+	cout << "----------------------------------------------------------------------------------------------------------" << endl;
+	while (p != NULL)
+	{
+		if (p->idClass == malop)
+		{
+			cout << setw(11) << i++ << "|" << setw(20) << p->id << setw(20) << p->firstName << setw(10) << p->lastName << setw(13) << p->birdDay[0] << "/" << setw(2) << p->birdDay[1] << "/" << setw(4) << p->birdDay[2] << setw(10) << p->idClass << setw(10) << p->point << endl;
+
+		}
+		p = p->link;
+	}
+}
+
+// output theo ma hoc vien
+void outputListHVTheoMaHV(HocVien* first, int maHV)
+{
+	if (first == NULL)
+	{
+		cout << "Chua co danh sach!!!" << endl;
+		return;
+	}
+	int i = 1;
+	HocVien* p;
+	p = first;
+	while (p != NULL)
+	{
+		if (p->id == maHV)
+		{
+			cout << setw(12) << "STT" << setw(20) << "MSSV" << setw(20) << "Ho & ten dem" << setw(10) << "Ten" << setw(20) << "Ngay Sinh" << setw(11) << "Ma Lop" << setw(10) << "Diem" << endl;
+			cout << "----------------------------------------------------------------------------------------------------------" << endl;
+			cout << setw(11) << i++ << "|" << setw(20) << p->id << setw(20) << p->firstName << setw(10) << p->lastName << setw(13) << p->birdDay[0] << "/" << setw(2) << p->birdDay[1] << "/" << setw(4) << p->birdDay[2] << setw(10) << p->idClass << setw(10) << p->point << endl;
+			return;
+		}
+		p = p->link;
+	}
+	cout << "Khong tim thay\n";
+}
+
+// output theo nam sinh
+void outputListHVTheoNamSinh(HocVien* first, int namsinh)
+{
+	if (first == NULL)
+	{
+		cout << "Chua co danh sach!!!" << endl;
+		return;
+	}
+	int i = 1;
+	HocVien* p;
+	p = first;
+
+	while (p != NULL)
+	{
+		if (p->birdDay[2] == namsinh)
+		{
+			//cout << p->birdDay[2] << " " << namsinh << endl;
+			//system("pause");
+			if (i == 1)
+			{
+				cout << setw(12) << "STT" << setw(20) << "MSSV" << setw(20) << "Ho & ten dem" << setw(10) << "Ten" << setw(20) << "Ngay Sinh" << setw(11) << "Ma Lop" << setw(10) << "Diem" << endl;
+				cout << "----------------------------------------------------------------------------------------------------------" << endl;
+
+			}
+			cout << setw(11) << i++ << "|" << setw(20) << p->id << setw(20) << p->firstName << setw(10) << p->lastName << setw(13) << p->birdDay[0] << "/" << setw(2) << p->birdDay[1] << "/" << setw(4) << p->birdDay[2] << setw(10) << p->idClass << setw(10) << p->point << endl;
+
+		}
+		p = p->link;
+	}
+	if (i == 1)
+		cout << "Khong tim thay\n";
+}
+
+
+
